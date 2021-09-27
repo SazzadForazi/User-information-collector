@@ -1,6 +1,8 @@
 import React from 'react';
+import ReactModal from '../ReactModal/ReactModal';
 import './Allusers.css'
 const Allusers = (props) => {
+
     // console.log(props.handleAddToCart);
     const { name, gender, phone, location, email, picture } = props.user;
     // console.log(name);
@@ -17,8 +19,14 @@ const Allusers = (props) => {
                 <h5>Phone:{phone}</h5>
                 <h5>Country:{location.country}</h5>
                 <p><small>Email:{email}</small></p>
-                <button onClick={() => props.handleAddToCart(props.user)} className="group btn btn-danger">Add To Group</button> <br />
-                <button className="details btn btn-primary">Details</button>
+                {props.user.isAdded ? (
+                    (<button className="group btn btn-danger">Already Added</button>)
+
+
+                ) : <button onClick={() => props.handleAddToCart(props.user)} className="group btn btn-info">Add To Group</button>
+                }
+                <br />
+                <ReactModal user={props.user}></ReactModal>
             </div>
         </div >
 
